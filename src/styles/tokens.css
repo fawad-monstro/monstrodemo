@@ -1,0 +1,146 @@
+/* Monstro Design System — CSS variables
+   Prototype surface tokens (--c-*): light on :root, dark via [data-theme="dark"].
+   Monstro brand tokens (--brand-*, --text-*, etc.) also defined here. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kalam:wght@400;700&display=swap');
+
+/* ── Brand & data-viz (theme-invariant) ──────────────────────────── */
+:root {
+  --brand-primary-02: rgb(31, 78, 220);
+  --brand-primary-03: rgb(62, 106, 238);
+  --brand-primary-04: rgb(130, 184, 255);
+  --brand-secondary-01: rgb(250, 175, 0);
+  --brand-tertiary-02: rgb(233, 0, 180);
+  --accent-violet-01: rgb(138, 56, 245);
+  --dataviz-positive-light: rgb(0, 194, 29);
+  --dataviz-negative-light: rgb(220, 31, 78);
+  --dataviz-positive-dark: rgb(42, 239, 88);
+  --dataviz-negative-dark: rgb(226, 61, 102);
+
+  /* Domain accent dots */
+  --domain-cashflow: #1F4EDC;
+  --domain-retirement: #8A38F5;
+  --domain-estate: #E900B4;
+  --domain-investments: #0E7C5A;
+  --domain-tax: #C77700;
+  --domain-insurance: #0891B2;
+
+  /* Radius */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-pill: 9999px;
+
+  /* Spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 64px;
+
+  /* Animation */
+  --dur-state: 180ms;
+  --dur-overlay: 250ms;
+  --ease-out: ease-out;
+}
+
+/* ── LIGHT (default) ──────────────────────────────────────────────── */
+:root,
+[data-theme="light"] {
+  --c-page: #F5F5F7;
+  --c-card: #ffffff;
+  --c-side: #FAFAFA;
+  --c-text: #0A0A0A;
+  --c-text2: #46474B;
+  --c-text3: #707175;
+  --c-text4: #909094;
+  --c-border: #E6E6E6;
+  --c-border2: #EDEDEF;
+  --c-line: #F0F0F2;
+  --c-inputbd: #D9D9D9;
+  --c-tint: #F2F4F8;
+  --c-bluetint: #EEF2FF;
+  --c-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --c-shadow-modal: 0 1px 15px rgba(0, 0, 0, 0.20);
+  --c-host: #ffffff;
+  --c-scrim: rgba(10, 10, 10, 0.5);
+  --c-positive: var(--dataviz-positive-light);
+  --c-negative: var(--dataviz-negative-light);
+  --c-btn-primary-bg: #0A0A0A;
+  --c-btn-primary-fg: #ffffff;
+  --c-link: #1F4EDC;
+}
+
+/* ── DARK ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --c-page: #0A0A0A;
+  --c-card: #1C1B1F;
+  --c-side: #161618;
+  --c-text: #FFFFFF;
+  --c-text2: #D9D9D9;
+  --c-text3: #9D9D9D;
+  --c-text4: #8A8A8E;
+  --c-border: #333337;
+  --c-border2: #3A3A3F;
+  --c-line: #2A2A2E;
+  --c-inputbd: #434343;
+  --c-tint: rgba(255, 255, 255, 0.06);
+  --c-bluetint: rgba(62, 106, 238, 0.18);
+  --c-shadow: none;
+  --c-shadow-modal: none;
+  --c-host: #161618;
+  --c-scrim: rgba(10, 10, 10, 0.7);
+  --c-positive: var(--dataviz-positive-dark);
+  --c-negative: var(--dataviz-negative-dark);
+  --c-btn-primary-bg: #ffffff;
+  --c-btn-primary-fg: #000000;
+  --c-link: rgb(130, 184, 255);
+}
+
+/* ── BASE STYLES ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #D8D8DA;
+  color: var(--c-text);
+}
+
+button { font-family: inherit; cursor: pointer; }
+a { color: var(--c-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── ANIMATIONS ────────────────────────────────────────────────────── */
+@keyframes mfade {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes mpop {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── WIREFRAME LAYER ───────────────────────────────────────────────── */
+.wire-mode * {
+  font-family: 'Kalam', cursive !important;
+  letter-spacing: 0 !important;
+}
+.wire-mode {
+  filter: grayscale(1) contrast(0.97);
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb {
+  background: #C4C4C8;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track { background: transparent; }
