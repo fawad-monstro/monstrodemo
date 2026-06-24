@@ -31,7 +31,7 @@ export function PersonDetailModal() {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 48, height: 48, background: '#EEF2FF', color: '#1F4EDC', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>
+            <div style={{ width: 48, height: 48, background: 'var(--avatar-bg)', color: 'var(--avatar-fg)', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>
               {initials}
             </div>
             <div>

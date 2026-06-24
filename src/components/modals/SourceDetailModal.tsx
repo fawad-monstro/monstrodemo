@@ -13,11 +13,11 @@ export function SourceDetailModal() {
   if (!srcModal) return null;
 
   const kindStyle = srcModal.kind === 'market'
-    ? { background: '#EEF2FF', color: '#1F4EDC' }
-    : { background: '#F3EEFF', color: '#8A38F5' };
+    ? { background: 'var(--tint-blue-bg)', color: 'var(--tint-blue-fg)' }
+    : { background: 'var(--tint-violet-bg)', color: 'var(--tint-violet-fg)' };
 
   const statusStyle = srcModal.status === 'Connected'
-    ? { background: '#E8F7EC', color: '#0E7C5A' }
+    ? { background: 'var(--tint-green-bg)', color: 'var(--tint-green-fg)' }
     : { background: '#F5F5F7', color: '#9D9D9D' };
 
   const chipBase = { fontSize: 11, fontWeight: 700 as const, textTransform: 'uppercase' as const, padding: '3px 8px', borderRadius: 999 };

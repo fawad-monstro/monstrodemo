@@ -66,7 +66,7 @@ export function GuidanceActionModal() {
                 style={{ border: '1px solid var(--c-border)', borderRadius: 16, padding: 20, cursor: 'pointer', display: 'flex', gap: 14, alignItems: 'center', background: 'var(--c-card)' }}
                 onClick={actSelf}
               >
-                <div style={{ width: 36, height: 36, background: '#EEF2FF', color: '#1F4EDC', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, background: 'var(--tint-blue-bg)', color: 'var(--tint-blue-fg)', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
                   ⚡
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -80,7 +80,7 @@ export function GuidanceActionModal() {
                 style={{ border: '1px solid var(--c-border)', borderRadius: 16, padding: 20, cursor: 'pointer', display: 'flex', gap: 14, alignItems: 'center', background: 'var(--c-card)' }}
                 onClick={actToMsg}
               >
-                <div style={{ width: 36, height: 36, background: '#F3EEFF', color: '#8A38F5', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, background: 'var(--tint-violet-bg)', color: 'var(--tint-violet-fg)', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>
                   ✉
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -172,7 +172,7 @@ export function GuidanceActionModal() {
         {/* Done mode */}
         {actMode === 'done' && (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <div style={{ width: 56, height: 56, background: '#E8F7EC', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 16px', color: '#0E7C5A' }}>
+            <div style={{ width: 56, height: 56, background: 'var(--tint-green-bg)', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 16px', color: '#0E7C5A' }}>
               ✓
             </div>
             <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--c-text)', marginBottom: 8 }}>

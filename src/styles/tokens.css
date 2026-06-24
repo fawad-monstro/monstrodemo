@@ -45,6 +45,47 @@
   --ease-out: ease-out;
 }
 
+/* ── SEMANTIC TINT TOKENS (theme-invariant keys, values per theme) ─ */
+/* Used for type pills, status chips, avatars, progress tracks.       */
+:root,
+[data-theme="light"] {
+  /* Tints — light mode: opaque pastels */
+  --tint-blue-bg:   #EEF2FF;
+  --tint-blue-fg:   #1F4EDC;
+  --tint-amber-bg:  #FFF3E0;
+  --tint-amber-fg:  #C77700;
+  --tint-violet-bg: #F3EEFF;
+  --tint-violet-fg: #8A38F5;
+  --tint-green-bg:  #E8F7EC;
+  --tint-green-fg:  #0E7C5A;
+  --tint-red-bg:    #FDECEF;
+  --tint-red-fg:    #DC1F4E;
+  --tint-neutral-bg: #F2F4F8;
+  --tint-neutral-fg: #707175;
+  --track-bg:        #EDEDEF;  /* progress bar track */
+  --avatar-bg:       #EEF2FF;
+  --avatar-fg:       #1F4EDC;
+}
+
+[data-theme="dark"] {
+  /* Tints — dark mode: semi-transparent, lighter foregrounds */
+  --tint-blue-bg:   rgba(31,  78,  220, 0.20);
+  --tint-blue-fg:   #82B8FF;
+  --tint-amber-bg:  rgba(199, 119, 0,   0.20);
+  --tint-amber-fg:  #FAAF00;
+  --tint-violet-bg: rgba(138, 56,  245, 0.20);
+  --tint-violet-fg: #C084FC;
+  --tint-green-bg:  rgba(14,  124, 90,  0.20);
+  --tint-green-fg:  #34D399;
+  --tint-red-bg:    rgba(220, 31,  78,  0.20);
+  --tint-red-fg:    #F87171;
+  --tint-neutral-bg: rgba(255,255,255, 0.08);
+  --tint-neutral-fg: #9D9D9D;
+  --track-bg:        #333337;
+  --avatar-bg:       rgba(31,78,220, 0.20);
+  --avatar-fg:       #82B8FF;
+}
+
 /* ── LIGHT (default) ──────────────────────────────────────────────── */
 :root,
 [data-theme="light"] {

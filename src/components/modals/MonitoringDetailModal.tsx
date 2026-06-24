@@ -17,8 +17,8 @@ export function MonitoringDetailModal() {
   const detail = MON_DETAIL[monModal.text];
 
   const statusStyle = monModal.status === 'flag'
-    ? { background: '#FDECEF', color: '#DC1F4E', fontSize: 11, fontWeight: 700 as const, padding: '4px 10px', borderRadius: 999 }
-    : { background: '#FFF3E0', color: '#C77700', fontSize: 11, fontWeight: 700 as const, padding: '4px 10px', borderRadius: 999 };
+    ? { background: 'var(--tint-red-bg)', color: 'var(--tint-red-fg)', fontSize: 11, fontWeight: 700 as const, padding: '4px 10px', borderRadius: 999 }
+    : { background: 'var(--tint-amber-bg)', color: 'var(--tint-amber-fg)', fontSize: 11, fontWeight: 700 as const, padding: '4px 10px', borderRadius: 999 };
 
   return (
     <div style={overlay}>

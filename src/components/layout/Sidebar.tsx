@@ -110,8 +110,8 @@ export function Sidebar() {
                 justifyContent: 'center',
                 fontSize: 14,
                 flexShrink: 0,
-                background: active ? '#EEF2FF' : '#ECECEC',
-                color: active ? '#1F4EDC' : '#909094',
+                background: active ? 'var(--tint-blue-bg)' : 'var(--c-tint)',
+                color: active ? 'var(--tint-blue-fg)' : 'var(--c-text4)',
               }}>{item.icon}</div>
               {k === 'queue' && queueCount > 0 && (
                 <div style={{

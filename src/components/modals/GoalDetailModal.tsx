@@ -20,9 +20,9 @@ export function GoalDetailModal() {
   const shortfall = Math.max(0, target - funded);
 
   const priorityStyle =
-    priority === 'Must-have' ? { background: '#FDECEF', color: '#DC1F4E' } :
-    priority === 'Want' ? { background: '#FFF3E0', color: '#C77700' } :
-    { background: '#E8F7EC', color: '#0E7C5A' };
+    priority === 'Must-have' ? { background: 'var(--tint-red-bg)', color: 'var(--tint-red-fg)' } :
+    priority === 'Want' ? { background: 'var(--tint-amber-bg)', color: 'var(--tint-amber-fg)' } :
+    { background: 'var(--tint-green-bg)', color: 'var(--tint-green-fg)' };
 
   const progressColor = pct >= 80 ? '#0E7C5A' : pct >= 40 ? '#C77700' : '#DC1F4E';
 
@@ -58,7 +58,7 @@ export function GoalDetailModal() {
 
         {/* Progress */}
         <div style={{ marginBottom: 20 }}>
-          <div style={{ height: 8, background: '#EDEDEF', borderRadius: 6, overflow: 'hidden' }}>
+          <div style={{ height: 8, background: 'var(--track-bg)', borderRadius: 6, overflow: 'hidden' }}>
             <div style={{ width: pct + '%', height: 8, background: progressColor, borderRadius: 6, transition: 'width 0.3s' }} />
           </div>
           <p style={{ fontSize: 12, color: 'var(--c-text3)', marginTop: 4 }}>{pct}% funded</p>

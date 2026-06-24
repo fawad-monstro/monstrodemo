@@ -333,7 +333,7 @@ export function VaultScreen() {
                           <span style={{
                             fontSize: 9, fontWeight: 700, textTransform: 'uppercase',
                             padding: '1px 5px', borderRadius: 3,
-                            background: lot.term === 'LT' ? '#E8F7EC' : '#FFF3E0',
+                            background: lot.term === 'LT' ? 'var(--tint-green-bg)' : 'var(--tint-amber-bg)',
                             color: lot.term === 'LT' ? '#0E7C5A' : '#C77700',
                           }}>
                             {lot.term}
@@ -623,7 +623,7 @@ export function VaultScreen() {
                 <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--c-text)', marginTop: 6 }}>{gname}</div>
                 <div style={{ fontSize: 12, color: 'var(--c-text3)', marginTop: 2 }}>{gdate}</div>
                 <div style={{ marginTop: 12 }}>
-                  <div style={{ height: 7, background: '#EDEDEF', borderRadius: 5, overflow: 'hidden' }}>
+                  <div style={{ height: 7, background: 'var(--track-bg)', borderRadius: 5, overflow: 'hidden' }}>
                     <div style={{
                       width: gpct + '%', height: 7, borderRadius: 5,
                       background: gpct >= 80 ? '#0E7C5A' : gpct >= 40 ? '#C77700' : '#DC1F4E',
@@ -651,7 +651,7 @@ export function VaultScreen() {
             >
               <div style={{
                 width: 34, height: 34, borderRadius: 999,
-                background: '#EEF2FF', color: '#1F4EDC',
+                background: 'var(--avatar-bg)', color: 'var(--avatar-fg)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 11, fontWeight: 700, flexShrink: 0,
               }}>

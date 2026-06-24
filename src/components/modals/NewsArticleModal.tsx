@@ -15,7 +15,7 @@ export function NewsArticleModal() {
       <div style={card(560)}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-          <span style={{ background: '#F3EEFF', color: '#8A38F5', fontSize: 10, padding: '3px 8px', borderRadius: 999, fontWeight: 600 }}>
+          <span style={{ background: 'var(--tint-violet-bg)', color: 'var(--tint-violet-fg)', fontSize: 10, padding: '3px 8px', borderRadius: 999, fontWeight: 600 }}>
             {article.tag}
           </span>
           <button style={closeBtn} onClick={closeArticle}>×</button>

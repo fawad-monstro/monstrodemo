@@ -1,9 +1,9 @@
 import { useAppStore } from '../../store/useAppStore';
 
 const typeColors: Record<string, [string, string]> = {
-  Integration: ['#EEF2FF', '#1F4EDC'],
-  Document: ['#FFF3E0', '#C77700'],
-  Profile: ['#F3EEFF', '#8A38F5'],
+  Integration: ['var(--tint-blue-bg)', 'var(--tint-blue-fg)'],
+  Document: ['var(--tint-amber-bg)', 'var(--tint-amber-fg)'],
+  Profile: ['var(--tint-violet-bg)', 'var(--tint-violet-fg)'],
 };
 
 import { overlayStyle } from './shared';

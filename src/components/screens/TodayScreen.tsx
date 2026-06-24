@@ -5,9 +5,9 @@ import { QUEUE_ITEMS } from '../../data/queue';
 import { NEWS } from '../../data/news';
 
 const typeColors: Record<string, [string, string]> = {
-  Integration: ['#EEF2FF', '#1F4EDC'],
-  Document: ['#FFF3E0', '#C77700'],
-  Profile: ['#F3EEFF', '#8A38F5'],
+  Integration: ['var(--tint-blue-bg)', 'var(--tint-blue-fg)'],
+  Document: ['var(--tint-amber-bg)', 'var(--tint-amber-fg)'],
+  Profile: ['var(--tint-violet-bg)', 'var(--tint-violet-fg)'],
 };
 
 export function TodayScreen() {
@@ -78,11 +78,11 @@ export function TodayScreen() {
             if (!item) return null;
             const doneKey = `${persona}|${item.title}`;
 
-            let iconBg = '#EEF2FF';
-            let iconColor = '#1F4EDC';
+            let iconBg = 'var(--tint-blue-bg)';
+            let iconColor = 'var(--tint-blue-fg)';
             let iconText = '⇄';
-            if (item.type === 'Document') { iconBg = '#FFF3E0'; iconColor = '#C77700'; iconText = '▤'; }
-            if (item.type === 'Profile') { iconBg = '#F3EEFF'; iconColor = '#8A38F5'; iconText = '?'; }
+            if (item.type === 'Document') { iconBg = 'var(--tint-amber-bg)'; iconColor = 'var(--tint-amber-fg)'; iconText = '▤'; }
+            if (item.type === 'Profile') { iconBg = 'var(--tint-violet-bg)'; iconColor = 'var(--tint-violet-fg)'; iconText = '?'; }
 
             const [pillBg, pillColor] = typeColors[item.type] ?? ['#F5F5F7', '#666'];
 
@@ -159,8 +159,8 @@ export function TodayScreen() {
           {p.guidance.slice(0, 3).map((id) => {
             const g = GUIDANCE[id];
             if (!g) return null;
-            const statusBg = g.status === 'New' ? '#EEF2FF' : '#E8F7EC';
-            const statusColor = g.status === 'New' ? '#1F4EDC' : '#0E7C5A';
+            const statusBg = g.status === 'New' ? 'var(--tint-blue-bg)' : 'var(--tint-green-bg)';
+            const statusColor = g.status === 'New' ? 'var(--tint-blue-fg)' : 'var(--tint-green-fg)';
             return (
               <div
                 key={id}
@@ -223,7 +223,7 @@ export function TodayScreen() {
               <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--c-text)' }}>{title}</span>
               <span style={{ fontSize: 11, color: 'var(--c-text3)', marginTop: 2 }}>{src} · {when}</span>
               <div style={{ marginTop: 4, display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span style={{ fontSize: 10, background: '#F3EEFF', color: '#8A38F5', padding: '2px 6px', borderRadius: 4 }}>{tag}</span>
+                <span style={{ fontSize: 10, background: 'var(--tint-violet-bg)', color: 'var(--tint-violet-fg)', padding: '2px 6px', borderRadius: 4 }}>{tag}</span>
                 <span style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--c-text3)' }}>{why}</span>
               </div>
             </div>

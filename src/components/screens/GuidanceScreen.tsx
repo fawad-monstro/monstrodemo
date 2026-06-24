@@ -21,8 +21,8 @@ export function GuidanceScreen() {
     const g = GUIDANCE[detail];
     if (!g) return null;
 
-    const statusBg = g.status === 'New' ? '#EEF2FF' : '#E8F7EC';
-    const statusColor = g.status === 'New' ? '#1F4EDC' : '#0E7C5A';
+    const statusBg = g.status === 'New' ? 'var(--tint-blue-bg)' : 'var(--tint-green-bg)';
+    const statusColor = g.status === 'New' ? 'var(--tint-blue-fg)' : 'var(--tint-green-fg)';
 
     return (
       <div style={{ padding: '26px 30px', animation: 'mfade 0.18s ease' }}>
@@ -157,8 +157,8 @@ export function GuidanceScreen() {
       {p.guidance.map((id) => {
         const g = GUIDANCE[id];
         if (!g) return null;
-        const statusBg = g.status === 'New' ? '#EEF2FF' : '#E8F7EC';
-        const statusColor = g.status === 'New' ? '#1F4EDC' : '#0E7C5A';
+        const statusBg = g.status === 'New' ? 'var(--tint-blue-bg)' : 'var(--tint-green-bg)';
+        const statusColor = g.status === 'New' ? 'var(--tint-blue-fg)' : 'var(--tint-green-fg)';
         return (
           <div
             key={id}

@@ -4,9 +4,9 @@ import { viaFromTitle } from '../../utils';
 import type { QueueItemType } from '../../types';
 
 const typeColors: Record<string, [string, string]> = {
-  Integration: ['#EEF2FF', '#1F4EDC'],
-  Document: ['#FFF3E0', '#C77700'],
-  Profile: ['#F3EEFF', '#8A38F5'],
+  Integration: ['var(--tint-blue-bg)', 'var(--tint-blue-fg)'],
+  Document:    ['var(--tint-amber-bg)', 'var(--tint-amber-fg)'],
+  Profile:     ['var(--tint-violet-bg)', 'var(--tint-violet-fg)'],
 };
 
 export function DataQueueScreen() {
@@ -47,13 +47,13 @@ export function DataQueueScreen() {
 
       {/* Filter chips */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-        <span style={{ fontSize: 12, background: '#EEF2FF', color: '#1F4EDC', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
+        <span style={{ fontSize: 12, background: 'var(--tint-blue-bg)', color: 'var(--tint-blue-fg)', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
           {integCount} Integrations
         </span>
-        <span style={{ fontSize: 12, background: '#FFF3E0', color: '#C77700', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
+        <span style={{ fontSize: 12, background: 'var(--tint-amber-bg)', color: 'var(--tint-amber-fg)', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
           {docCount} Documents
         </span>
-        <span style={{ fontSize: 12, background: '#F3EEFF', color: '#8A38F5', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
+        <span style={{ fontSize: 12, background: 'var(--tint-violet-bg)', color: 'var(--tint-violet-fg)', padding: '5px 12px', borderRadius: 999, fontWeight: 600 }}>
           {profCount} Profile questions
         </span>
       </div>
@@ -63,11 +63,11 @@ export function DataQueueScreen() {
         const doneKey = `${persona}|${item.title}`;
         const isDone = !!qDone[doneKey];
 
-        let iconBg = '#EEF2FF';
-        let iconColor = '#1F4EDC';
+        let iconBg = 'var(--tint-blue-bg)';
+        let iconColor = 'var(--tint-blue-fg)';
         let iconText = '⇄';
-        if (item.type === 'Document') { iconBg = '#FFF3E0'; iconColor = '#C77700'; iconText = '▤'; }
-        if (item.type === 'Profile') { iconBg = '#F3EEFF'; iconColor = '#8A38F5'; iconText = '?'; }
+        if (item.type === 'Document') { iconBg = 'var(--tint-amber-bg)'; iconColor = 'var(--tint-amber-fg)'; iconText = '▤'; }
+        if (item.type === 'Profile') { iconBg = 'var(--tint-violet-bg)'; iconColor = 'var(--tint-violet-fg)'; iconText = '?'; }
 
         const [pillBg, pillColor] = typeColors[item.type] ?? ['#F5F5F7', '#666'];
 

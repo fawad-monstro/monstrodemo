@@ -19,10 +19,10 @@ export function MonitoringScreen() {
         if (status === 'watch') dotBg = '#C77700';
         if (status === 'flag') dotBg = '#DC1F4E';
 
-        let pillBg = '#E8F7EC';
-        let pillColor = '#0E7C5A';
-        if (status === 'watch') { pillBg = '#FFF3E0'; pillColor = '#C77700'; }
-        if (status === 'flag') { pillBg = '#FDECEF'; pillColor = '#DC1F4E'; }
+        let pillBg = 'var(--tint-green-bg)';
+        let pillColor = 'var(--tint-green-fg)';
+        if (status === 'watch') { pillBg = 'var(--tint-amber-bg)'; pillColor = 'var(--tint-amber-fg)'; }
+        if (status === 'flag') { pillBg = 'var(--tint-red-bg)'; pillColor = 'var(--tint-red-fg)'; }
 
         return (
           <div
