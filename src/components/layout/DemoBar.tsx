@@ -2,80 +2,69 @@ import { useAppStore } from '../../store/useAppStore';
 import { PERSONAS } from '../../data/personas';
 import type { PersonaId, Fidelity } from '../../types';
 
-const personaOptions: { id: PersonaId; label: string }[] = [
-  { id: 'maya', label: 'Maya' },
-  { id: 'david', label: 'David' },
-  { id: 'marcus', label: 'Marcus' },
-  { id: 'patel', label: 'Raj & Priya' },
-  { id: 'eleanor', label: 'Eleanor' },
+const personaOptions: { id: PersonaId; label: string; short: string }[] = [
+  { id: 'maya',    label: 'Maya',      short: 'Maya' },
+  { id: 'david',   label: 'David',     short: 'David' },
+  { id: 'marcus',  label: 'Marcus',    short: 'Marcus' },
+  { id: 'patel',   label: 'Raj & Priya', short: 'Raj' },
+  { id: 'eleanor', label: 'Eleanor',   short: 'Eleanor' },
 ];
 
-const label: React.CSSProperties = {
-  fontSize: 11,
-  color: '#9D9D9D',
-  textTransform: 'uppercase' as const,
-  letterSpacing: '.04em',
-  whiteSpace: 'nowrap' as const,
-};
-
-const group: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-};
-
-const pillContainer: React.CSSProperties = {
-  display: 'inline-flex',
-  background: '#1C1C1F',
-  borderRadius: 999,
-  padding: 3,
-};
-
-function activePill(): React.CSSProperties {
-  return {
-    border: 'none',
-    background: '#3A3A3A',
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: 600,
-    padding: '5px 12px',
-    borderRadius: 999,
-    cursor: 'pointer',
-  };
-}
-
-function inactivePill(): React.CSSProperties {
-  return {
-    border: 'none',
-    background: 'transparent',
-    color: '#9D9D9D',
-    fontSize: 12,
-    fontWeight: 500,
-    padding: '5px 12px',
-    borderRadius: 999,
-    cursor: 'pointer',
-  };
-}
+const fidelityOptions: { id: Fidelity; label: string; short: string }[] = [
+  { id: 'dark',  label: 'Dark',      short: 'Dark' },
+  { id: 'light', label: 'Light',     short: 'Light' },
+  { id: 'wire',  label: 'Wireframe', short: 'Wire' },
+];
 
 export function DemoBar() {
-  const embedded = useAppStore(s => s.embedded);
-  const view = useAppStore(s => s.view);
-  const fidelity = useAppStore(s => s.fidelity);
-  const persona = useAppStore(s => s.persona);
-  const setEmbedded = useAppStore(s => s.setEmbedded);
-  const setView = useAppStore(s => s.setView);
-  const setFidelity = useAppStore(s => s.setFidelity);
-  const setPersona = useAppStore(s => s.setPersona);
+  const embedded   = useAppStore(s => s.embedded);
+  const view       = useAppStore(s => s.view);
+  const fidelity   = useAppStore(s => s.fidelity);
+  const persona    = useAppStore(s => s.persona);
+  const setEmbedded  = useAppStore(s => s.setEmbedded);
+  const setView      = useAppStore(s => s.setView);
+  const setFidelity  = useAppStore(s => s.setFidelity);
+  const setPersona   = useAppStore(s => s.setPersona);
 
-  // Determine advisor/banker label based on persona tier
   const p = PERSONAS[persona];
   const viewBLabel = p.tier === 'Mass market' ? 'Banker' : 'Advisor';
 
-  const fidelityOptions: { id: Fidelity; label: string }[] = [
-    { id: 'dark', label: 'Dark' },
-    { id: 'light', label: 'Light' },
-    { id: 'wire', label: 'Wireframe' },
-  ];
+  const active = (on: boolean): React.CSSProperties => ({
+    border: 'none',
+    background: on ? '#3A3A3A' : 'transparent',
+    color: on ? '#fff' : '#9D9D9D',
+    fontSize: 12,
+    fontWeight: on ? 600 : 400,
+    padding: '5px 10px',
+    borderRadius: 999,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    WebkitTapHighlightColor: 'transparent',
+  });
+
+  const group: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 6,
+    flexShrink: 0,
+  };
+
+  const lbl: React.CSSProperties = {
+    fontSize: 10,
+    color: '#666',
+    textTransform: 'uppercase',
+    letterSpacing: '.04em',
+    whiteSpace: 'nowrap',
+    flexShrink: 0,
+  };
+
+  const pills: React.CSSProperties = {
+    display: 'inline-flex',
+    background: '#1C1C1F',
+    borderRadius: 999,
+    padding: 3,
+    flexShrink: 0,
+  };
 
   return (
     <div style={{
@@ -88,79 +77,64 @@ export function DemoBar() {
       background: '#0A0A0A',
       display: 'flex',
       alignItems: 'center',
-      padding: '0 18px',
-      gap: 20,
+      padding: '0 14px',
+      gap: 12,
+      overflowX: 'auto',
+      scrollbarWidth: 'none',
+      WebkitOverflowScrolling: 'touch',
     }}>
-      {/* Logo */}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      {/* Logo — shrinks last */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0, marginRight: 4 }}>
         <div style={{
-          width: 24,
-          height: 24,
+          width: 24, height: 24, flexShrink: 0,
           background: 'linear-gradient(135deg,#1F4EDC,#8A38F5)',
-          borderRadius: 6,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontWeight: 700,
-          fontSize: 13,
-          letterSpacing: -0.5,
+          borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'white', fontWeight: 700, fontSize: 13,
         }}>M</div>
-        <span style={{ fontSize: 14, fontWeight: 600, color: 'white', marginLeft: 8 }}>Monstro</span>
-        <span style={{
-          border: '1px solid #3A3A3A',
-          color: '#9D9D9D',
-          fontSize: 11,
-          padding: '2px 7px',
-          borderRadius: 999,
-          marginLeft: 8,
-        }}>Sales demo</span>
+        <span style={{ fontSize: 13, fontWeight: 600, color: 'white', whiteSpace: 'nowrap' }}>Monstro</span>
+        <span style={{ border: '1px solid #333', color: '#666', fontSize: 10, padding: '1px 6px', borderRadius: 4, whiteSpace: 'nowrap' }}>Demo</span>
       </div>
 
       {/* MODE */}
       <div style={group}>
-        <span style={label}>MODE</span>
-        <div style={pillContainer}>
-          <button style={embedded ? activePill() : inactivePill()} onClick={() => setEmbedded(true)}>Embedded</button>
-          <button style={!embedded ? activePill() : inactivePill()} onClick={() => setEmbedded(false)}>Standalone</button>
+        <span style={lbl}>Mode</span>
+        <div style={pills}>
+          <button style={active(embedded)}  onClick={() => setEmbedded(true)}>Embedded</button>
+          <button style={active(!embedded)} onClick={() => setEmbedded(false)}>Standalone</button>
         </div>
       </div>
 
       {/* VIEW */}
       <div style={group}>
-        <span style={label}>VIEW</span>
-        <div style={pillContainer}>
-          <button style={view === 'client' ? activePill() : inactivePill()} onClick={() => setView('client')}>Client</button>
-          <button style={view === 'advisor' ? activePill() : inactivePill()} onClick={() => setView('advisor')}>{viewBLabel}</button>
+        <span style={lbl}>View</span>
+        <div style={pills}>
+          <button style={active(view === 'client')}  onClick={() => setView('client')}>Client</button>
+          <button style={active(view === 'advisor')} onClick={() => setView('advisor')}>{viewBLabel}</button>
         </div>
       </div>
 
       {/* FIDELITY */}
       <div style={group}>
-        <span style={label}>FIDELITY</span>
-        <div style={pillContainer}>
-          {fidelityOptions.map(opt => (
-            <button
-              key={opt.id}
-              style={fidelity === opt.id ? activePill() : inactivePill()}
-              onClick={() => setFidelity(opt.id)}
-            >{opt.label}</button>
+        <span style={lbl}>Fidelity</span>
+        <div style={pills}>
+          {fidelityOptions.map(f => (
+            <button key={f.id} style={active(fidelity === f.id)} onClick={() => setFidelity(f.id)}>
+              {f.short}
+            </button>
           ))}
         </div>
       </div>
 
-      <div style={{ flex: 1 }} />
+      <div style={{ flex: 1, minWidth: 12, flexShrink: 1 }} />
 
-      {/* CLIENT */}
+      {/* PERSONAS */}
       <div style={group}>
-        <span style={label}>CLIENT</span>
-        <div style={pillContainer}>
+        <span style={lbl}>Client</span>
+        <div style={pills}>
           {personaOptions.map(opt => (
-            <button
-              key={opt.id}
-              style={persona === opt.id ? activePill() : inactivePill()}
-              onClick={() => setPersona(opt.id)}
-            >{opt.label}</button>
+            <button key={opt.id} style={active(persona === opt.id)} onClick={() => setPersona(opt.id)}>
+              {opt.short}
+            </button>
           ))}
         </div>
       </div>

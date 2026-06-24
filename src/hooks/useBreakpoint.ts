@@ -4,7 +4,7 @@ export type Breakpoint = 'phone' | 'tablet' | 'desktop';
 
 function getBreakpoint(w: number): Breakpoint {
   if (w < 600) return 'phone';
-  if (w < 1024) return 'tablet';
+  if (w < 900) return 'tablet';
   return 'desktop';
 }
 

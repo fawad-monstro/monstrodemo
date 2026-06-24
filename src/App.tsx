@@ -1,5 +1,6 @@
 import { useAppStore } from './store/useAppStore';
 import { useBreakpoint } from './hooks/useBreakpoint';
+import { useIsTauri } from './hooks/useIsTauri';
 import { useSwipeBack } from './hooks/useSwipeBack';
 import { DemoBar } from './components/layout/DemoBar';
 import { MobileDemoBar } from './components/layout/MobileDemoBar';
@@ -28,21 +29,23 @@ import { DecisionTreeModal } from './components/modals/DecisionTreeModal';
 import { AddAssetModal } from './components/modals/AddAssetModal';
 
 export default function App() {
-  const embedded   = useAppStore(s => s.embedded);
-  const fidelity   = useAppStore(s => s.fidelity);
-  const tab        = useAppStore(s => s.tab);
-  const detail     = useAppStore(s => s.detail);
-  const vaultCat   = useAppStore(s => s.vaultCat);
-  const vaultItem  = useAppStore(s => s.vaultItem);
+  const embedded    = useAppStore(s => s.embedded);
+  const fidelity    = useAppStore(s => s.fidelity);
+  const tab         = useAppStore(s => s.tab);
+  const detail      = useAppStore(s => s.detail);
+  const vaultCat    = useAppStore(s => s.vaultCat);
+  const vaultItem   = useAppStore(s => s.vaultItem);
   const closeDetail = useAppStore(s => s.closeDetail);
-  const vaultBack  = useAppStore(s => s.vaultBack);
+  const vaultBack   = useAppStore(s => s.vaultBack);
 
-  const bp = useBreakpoint();
+  const bp      = useBreakpoint();
+  const isTauri = useIsTauri();
   const isPhone  = bp === 'phone';
-  const isTablet = bp === 'tablet';
-  const isMobile = isPhone || isTablet; // no stage frame
 
-  // Swipe right → back in guidance detail or vault drill-down
+  // Stage frame only makes sense in the native Tauri window at full desktop size
+  const useStageFrame = isTauri && bp === 'desktop';
+
+  // Swipe-back for vault/guidance drill-down
   const canSwipeBack = (tab === 'guidance' && detail !== null) ||
     (tab === 'vault' && (vaultCat !== null || vaultItem !== null));
   useSwipeBack(() => {
@@ -50,12 +53,9 @@ export default function App() {
     else if (tab === 'vault') vaultBack();
   }, canSwipeBack);
 
-  // Demo bar height used for top offset
   const demoBarH = isPhone ? 44 : 50;
-  // Bottom nav height (phone only, accounts for safe area)
-  const bottomNavH = isPhone ? 'calc(56px + env(safe-area-inset-bottom))' : '0px';
 
-  const content = (
+  const screenContent = (
     <>
       {embedded ? <HostBar /> : <StandaloneBar />}
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
@@ -66,18 +66,18 @@ export default function App() {
             flex: 1,
             overflowY: 'auto',
             background: 'var(--c-page)',
-            // Pad bottom on phone so content isn't hidden behind bottom nav
-            paddingBottom: isPhone ? bottomNavH : undefined,
+            paddingBottom: isPhone ? 'calc(56px + env(safe-area-inset-bottom))' : undefined,
           }}
         >
-          {tab === 'today'     && <TodayScreen />}
-          {tab === 'guidance'  && <GuidanceScreen />}
-          {tab === 'monitoring'&& <MonitoringScreen />}
-          {tab === 'queue'     && <DataQueueScreen />}
-          {tab === 'connected' && <DataSourcesScreen />}
-          {tab === 'vault'     && <VaultScreen />}
+          {tab === 'today'      && <TodayScreen />}
+          {tab === 'guidance'   && <GuidanceScreen />}
+          {tab === 'monitoring' && <MonitoringScreen />}
+          {tab === 'queue'      && <DataQueueScreen />}
+          {tab === 'connected'  && <DataSourcesScreen />}
+          {tab === 'vault'      && <VaultScreen />}
         </main>
       </div>
+      {isPhone && <BottomNav />}
     </>
   );
 
@@ -85,33 +85,17 @@ export default function App() {
     <div
       data-theme={fidelity === 'dark' ? 'dark' : 'light'}
       className={`no-select${fidelity === 'wire' ? ' wire-mode' : ''}`}
-      style={{ height: '100%', display: 'flex', flexDirection: 'column', background: isMobile ? 'var(--c-page)' : '#D8D8DA' }}
+      style={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        background: useStageFrame ? '#D8D8DA' : 'var(--c-page)',
+      }}
     >
-      {/* Demo control bar — full on desktop/tablet, compact on phone */}
       {isPhone ? <MobileDemoBar /> : <DemoBar />}
 
-      {isMobile ? (
-        /* ── Mobile / tablet: full-screen, no stage frame ── */
-        <div style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden',
-          paddingTop: demoBarH,
-        }}>
-          <div style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            background: 'var(--c-page)',
-          }}>
-            {content}
-          </div>
-          {isPhone && <BottomNav />}
-        </div>
-      ) : (
-        /* ── Desktop: centered stage frame ── */
+      {useStageFrame ? (
+        /* ── Tauri native desktop: iPad-style stage frame ── */
         <div style={{
           paddingTop: demoBarH,
           flex: 1,
@@ -138,15 +122,27 @@ export default function App() {
               background: 'var(--c-page)',
               minHeight: 700,
             }}>
-              {content}
+              {screenContent}
             </div>
+          </div>
+        </div>
+      ) : (
+        /* ── Browser / tablet / phone: full-screen responsive ── */
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          paddingTop: demoBarH,
+          background: 'var(--c-page)',
+        }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+            {screenContent}
           </div>
         </div>
       )}
 
       <Toast />
-
-      {/* Modals */}
       <ConnectWidget />
       <QuestionPackModal />
       <RequestModal />
