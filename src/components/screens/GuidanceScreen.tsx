@@ -49,7 +49,7 @@ export function GuidanceScreen() {
         {/* Video placeholder */}
         <div
           style={{ width: '100%', height: 160, borderRadius: 16, background: 'linear-gradient(135deg,#1F2A4A 0%,#1F4EDC 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', position: 'relative', overflow: 'hidden', marginBottom: 20 }}
-          onClick={() => openVideo(detail, 0)}
+          onClick={() => openVideo(detail, Number(localStorage.getItem(`mev_${detail}`) || 0))}
         >
           <div style={{ width: 56, height: 56, background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.6)', borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ color: 'white', fontSize: 20, marginLeft: 4 }}>▶</span>
