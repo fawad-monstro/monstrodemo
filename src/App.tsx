@@ -69,12 +69,15 @@ export default function App() {
             paddingBottom: isPhone ? 'calc(56px + env(safe-area-inset-bottom))' : undefined,
           }}
         >
+          {/* Content width cap — matches the original stage frame width on all sizes */}
+          <div style={{ maxWidth: 1180, margin: '0 auto', height: '100%', display: 'flex', flexDirection: 'column' }}>
           {tab === 'today'      && <TodayScreen />}
           {tab === 'guidance'   && <GuidanceScreen />}
           {tab === 'monitoring' && <MonitoringScreen />}
           {tab === 'queue'      && <DataQueueScreen />}
           {tab === 'connected'  && <DataSourcesScreen />}
           {tab === 'vault'      && <VaultScreen />}
+          </div>
         </main>
       </div>
       {isPhone && <BottomNav />}

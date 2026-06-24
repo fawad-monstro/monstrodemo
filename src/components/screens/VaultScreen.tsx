@@ -556,7 +556,7 @@ export function VaultScreen() {
       </div>
 
       {/* Balance sheet grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginTop: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 12, marginTop: 24 }}>
         {catTotals.map(ct => (
           <div
             key={ct.key}
