@@ -95,6 +95,8 @@ export function Sidebar() {
               cursor: 'pointer',
               marginBottom: 2,
               position: 'relative',
+              minHeight: 44,
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
             {/* Icon box with optional badge */}
